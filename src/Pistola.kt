@@ -1,6 +1,16 @@
 package src
+import src.ArmaDeFuego.Companion.cajaMunicionExtra
 import kotlin.random.Random
-import kotlin.random.nextInt
+/**
+ * La clase Pistola hereda de la clase abstracta ArmaDeFuego y cuenta con sus propiedades propias:
+ * @property municion -> Entero que representa la munción máxima que puede llevar el arma.
+ * @property tipoDeMunicion -> Cadena que indica el tipo de calibre de las balas de arma.
+ * Y las propiedades heredadas de ArmaDeFuego:
+ * @property nombre -> Cadena que representa el nombre del arma. (PISTOLA)
+ * @property municionArestar -> Entero que indica la munición que se gasta al disparar. (1)
+ * @property danio -> Entero aleatorio que representa el daño del arma.
+ * @property radio -> Representa el radio de impacto de las balas del arma.
+ */
 class Pistola(municion:Int,tipoDeMunicion:String):ArmaDeFuego(municion,tipoDeMunicion) {
     override val nombre:String = "Pistola"
     override val danio: Int = Random.nextInt(1,5)
@@ -10,15 +20,4 @@ class Pistola(municion:Int,tipoDeMunicion:String):ArmaDeFuego(municion,tipoDeMun
         require(danio in 1..5) {"El daño debe estar entre 1 y 5"}
         require(radio == TipoRadio.CORTO || radio == TipoRadio.REDUCIDO) {"El radio ha de ser Reducido o Corto"}
     }
-
-    override fun decidirRadio():TipoRadio{
-        val random = Random.nextInt(1,2)
-        if (random == 1){
-            return TipoRadio.REDUCIDO
-        }
-        else{
-            return TipoRadio.CORTO
-        }
-    }
-
 }

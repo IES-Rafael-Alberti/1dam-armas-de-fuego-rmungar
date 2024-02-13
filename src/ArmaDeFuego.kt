@@ -1,20 +1,32 @@
 package src
 import kotlin.random.Random
-import kotlin.random.nextInt
+
+/**
+ * La clase abstracta ArmaDeFuego cuenta con las propiedades:
+ * @property municion -> Entero que representa la munción máxima que puede llevar el arma.
+ * @property tipoDeMunicion -> Cadena que indica el tipo de calibre de las balas de arma.
+ * @property nombre -> Cadena que representa el nombre del arma.
+ * @property municionArestar -> Entero que indica la munición que se gasta al disparar.
+ * @property danio -> Entero aleatorio que representa el daño del arma.
+ * @property radio -> Representa el radio de impacto de las balas del arma.
+ * @property cajaMunicionExtra -> Entero que representa el nº de recargas que hay disponibles.
+ */
 abstract class ArmaDeFuego (
     private var municion: Int,
-
     private val tipoDeMunicion: String,
     ){
     companion object{
         var cajaMunicionExtra: Int = Random.nextInt(5,15)
     }
+
     abstract val nombre: String
     abstract val municionArestar: Int
     abstract val danio: Int
     abstract val radio: TipoRadio
 
-    private val max: Int = municion
+    /**
+     * La funcion abierta disparar() se encarga de primero comprobar la munición restante dentro del cargador y actúa en funcion de esta.
+     */
    open fun disparar() {
         if (municion > municionArestar) {
             municion -= municionArestar
@@ -30,13 +42,18 @@ abstract class ArmaDeFuego (
             }
         }
    }
+
+    /**
+     * La función abierta comprobarRecarga() se encarga de devolver un booleano en función de si quedan recargas disponibles o no para todas las armas
+     * @return Boolean
+     */
     open fun comprobarRecarga():Boolean{
-        if (cajaMunicionExtra > 0) {
-            return true
-        } else {
-            return false
-        }
+        return cajaMunicionExtra > 0
     }
+
+    /**
+     * La función abierta recargar() se encarga de modificar todos los valorese necesarios a la hora de recargar un arma, teniendo en cuenta la existencia de cajas de recarga
+     */
    open fun recargar(){
         if (cajaMunicionExtra > 0){
             municion += municionArestar*2
@@ -47,17 +64,18 @@ abstract class ArmaDeFuego (
             println("No quedan recargas disponibles")
         }
    }
+
+    /**
+     * La función abierta decidirRadio() asigna un valor al radio en función de un numero aleatorio
+     * @return El valor del radio
+     */
     open fun decidirRadio():TipoRadio{
         val random = Random.nextInt(1,2)
-        if (random == 1){
-            return TipoRadio.REDUCIDO
+        return if (random == 1){
+            TipoRadio.REDUCIDO
+        } else{
+            TipoRadio.CORTO
         }
-        else{
-            return TipoRadio.CORTO
-        }
-    }
-    fun mostrarRecargas(){
-        println("Recargas restantes para todas las armas: $cajaMunicionExtra")
     }
 
     override fun toString(): String {
