@@ -1,5 +1,4 @@
 package src
-
 import kotlin.random.Random
 /**
  * La clase Rifle hereda de la clase abstracta ArmaDeFuego y cuenta con sus propiedades propias:
@@ -28,11 +27,10 @@ class Rifle(municion:Int, tipoDeMunicion:String):ArmaDeFuego(municion,tipoDeMuni
      */
     override fun decidirRadio():TipoRadio{
         val random = Random.nextInt(1,2)
-        if (random == 1){
-            return TipoRadio.CORTO
-        }
-        else{
-            return TipoRadio.INTERMEDIO
+        return if (random == 1){
+            TipoRadio.CORTO
+        } else{
+            TipoRadio.INTERMEDIO
         }
     }
 

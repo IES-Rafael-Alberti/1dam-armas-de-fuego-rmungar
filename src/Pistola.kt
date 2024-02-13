@@ -1,5 +1,4 @@
 package src
-import src.ArmaDeFuego.Companion.cajaMunicionExtra
 import kotlin.random.Random
 /**
  * La clase Pistola hereda de la clase abstracta ArmaDeFuego y cuenta con sus propiedades propias:

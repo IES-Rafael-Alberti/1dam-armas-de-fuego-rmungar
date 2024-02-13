@@ -1,5 +1,4 @@
 package src
-
 import kotlin.random.Random
 /**
  * La clase Bazooka hereda de la clase abstracta ArmaDeFuego y cuenta con sus propiedades propias:
@@ -28,11 +27,10 @@ class Bazooka(municion:Int,tipoDeMunicion:String):ArmaDeFuego(municion,tipoDeMun
      */
     override fun decidirRadio():TipoRadio{
         val random = Random.nextInt(1,2)
-        if (random == 1){
-            return TipoRadio.INTERMEDIO
-        }
-        else{
-            return TipoRadio.ENORME
+        return if (random == 1){
+            TipoRadio.AMPLIO
+        } else{
+            TipoRadio.ENORME
         }
     }
 
