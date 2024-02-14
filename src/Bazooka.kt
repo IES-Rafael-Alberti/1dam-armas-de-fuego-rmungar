@@ -14,23 +14,22 @@ class Bazooka(municion:Int,tipoDeMunicion:String):ArmaDeFuego(municion,tipoDeMun
     override val danio: Int = Random.nextInt(10,30)
     override val nombre: String = "Bazooka"
     override val municionArestar: Int = 1
-    override val radio: TipoRadio = decidirRadio()
+    override val radio: String = decidirRadio()
 
     init {
         require(danio in 10..30) {"El daño debe estar entre 10 y 30"}
-        require(radio == TipoRadio.INTERMEDIO|| radio == TipoRadio.ENORME) {"El radio ha de ser Inermedio o Enorme"}
     }
 
     /**
      * La funcion decidirRadio() ha sido modificada para que el radio se ajuste al arma
      * @return El valor del radio
      */
-    override fun decidirRadio():TipoRadio{
+    override fun decidirRadio():String{
         val random = Random.nextInt(1,2)
         return if (random == 1){
-            TipoRadio.AMPLIO
+            TipoRadio.AMPLIO.desc
         } else{
-            TipoRadio.ENORME
+            TipoRadio.ENORME.desc
         }
     }
 

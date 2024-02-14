@@ -17,12 +17,16 @@ abstract class ArmaDeFuego (
     ){
     companion object{
         var cajaMunicionExtra: Int = Random.nextInt(5,15)
+
+        fun reiniciarMunicion(){
+            cajaMunicionExtra = Random.nextInt(5,15)
+        }
     }
 
     abstract val nombre: String
     abstract val municionArestar: Int
     abstract val danio: Int
-    abstract val radio: TipoRadio
+    abstract val radio: String
 
     /**
      * La funcion abierta disparar() se encarga de primero comprobar la munición restante dentro del cargador y actúa en funcion de esta.
@@ -69,12 +73,12 @@ abstract class ArmaDeFuego (
      * La función abierta decidirRadio() asigna un valor al radio en función de un numero aleatorio
      * @return El valor del radio
      */
-    open fun decidirRadio():TipoRadio{
+    open fun decidirRadio():String{
         val random = Random.nextInt(1,2)
         return if (random == 1){
-            TipoRadio.REDUCIDO
+            TipoRadio.REDUCIDO.desc
         } else{
-            TipoRadio.CORTO
+            TipoRadio.CORTO.desc
         }
     }
 
