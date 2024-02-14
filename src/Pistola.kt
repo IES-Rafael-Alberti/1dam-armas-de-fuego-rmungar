@@ -10,7 +10,7 @@ import kotlin.random.Random
  * @property danio -> Entero aleatorio que representa el daño del arma.
  * @property radio -> Representa el radio de impacto de las balas del arma.
  */
-class Pistola(municion:Int,tipoDeMunicion:String):ArmaDeFuego(municion,tipoDeMunicion) {
+class Pistola(municion: Int, tipoDeMunicion: String): ArmaDeFuego(municion, tipoDeMunicion) {
     override val nombre:String = "Pistola"
     override val danio: Int = Random.nextInt(1,5)
     override val municionArestar: Int = 1

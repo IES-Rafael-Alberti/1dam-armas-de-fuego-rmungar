@@ -39,6 +39,7 @@ abstract class ArmaDeFuego (
         else{
             if (comprobarRecarga()) {
                 recargar()
+                municion -= municionArestar
                 println("$nombre dispara, Municion restante: $municion")
             }
             else{
@@ -51,14 +52,14 @@ abstract class ArmaDeFuego (
      * La función abierta comprobarRecarga() se encarga de devolver un booleano en función de si quedan recargas disponibles o no para todas las armas
      * @return Boolean
      */
-    open fun comprobarRecarga():Boolean{
+    private fun comprobarRecarga():Boolean{
         return cajaMunicionExtra > 0
     }
 
     /**
      * La función abierta recargar() se encarga de modificar todos los valorese necesarios a la hora de recargar un arma, teniendo en cuenta la existencia de cajas de recarga
      */
-   open fun recargar(){
+   private fun recargar(){
         if (cajaMunicionExtra > 0){
             municion += municionArestar*2
             cajaMunicionExtra -= 1
